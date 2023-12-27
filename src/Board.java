@@ -1,2 +1,17 @@
 package src;
-//Testing the git commit
+
+public class Board {
+
+    Square[][] squares;
+
+    //Constructor(s)
+    public Board(){
+        this.setBoard();
+    }
+
+    private void setBoard() {
+        
+    }
+
+
+}
