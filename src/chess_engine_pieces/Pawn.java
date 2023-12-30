@@ -14,7 +14,7 @@ import chess_engine_main.Team;
 
 public class Pawn extends Piece {
 
-    private final static int[] possibleMovePositions = {8};
+    private final static int[] possibleMovePositions = {7, 8, 9, 16};
 
     public Pawn(final Team pieceTeam, final int piecePosition) {
         super(piecePosition, pieceTeam);
@@ -28,7 +28,7 @@ public class Pawn extends Piece {
         for(final int currentPositionOffset : possibleMovePositions) {
 
             //Direction changes for white pawns and black pawns
-            final int possibleDestinationPosition = this.piecePosition + (this.getPieceTeam().getDirection() * currentPositionOffset);
+            final int possibleDestinationPosition = this.piecePosition + (this.pieceTeam.getDirection() * currentPositionOffset);
 
             if(!BoardUtil.isValidSquarePosition(possibleDestinationPosition)) {
                 continue;
@@ -40,8 +40,8 @@ public class Pawn extends Piece {
                 legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
             }
             //Pawn jump
-            else if(currentPositionOffset == 16 && this.isFirstMove() && ((BoardUtil.SECOND_ROW[this.piecePosition] && this.getPieceTeam().isBlack()) ||
-                    BoardUtil.SEVENTH_ROW[this.piecePosition] && this.getPieceTeam().isWhite())) {
+            else if(currentPositionOffset == 16 && this.isFirstMove() && ((BoardUtil.SECOND_ROW[this.piecePosition] && this.pieceTeam.isBlack()) ||
+                    BoardUtil.SEVENTH_ROW[this.piecePosition] && this.pieceTeam.isWhite())) {
                 
                 final int positionBehindDestination = this.piecePosition + (this.pieceTeam.getDirection() * 8);
                 if(!board.getSquare(positionBehindDestination).isSquareOccupied() && 
@@ -49,7 +49,26 @@ public class Pawn extends Piece {
                     legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
                 }
             }
-            //else if(currentPositionOffset == )
+            else if(currentPositionOffset == 7 && !((BoardUtil.EIGHTH_COLUMN[this.piecePosition] && this.pieceTeam.isWhite())
+                    || (BoardUtil.FIRST_COLUMN[this.piecePosition] && this.pieceTeam.isBlack()))) {
+
+                if(board.getSquare(possibleDestinationPosition).isSquareOccupied()) {
+                    final Piece pieceOnDestination = board.getSquare(possibleDestinationPosition).getPiece();
+                    if(this.pieceTeam != pieceOnDestination.getPieceTeam()) {
+                        legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
+                    }
+                }
+            }
+            else if(currentPositionOffset == 9 && !((BoardUtil.FIRST_COLUMN[this.piecePosition] && this.pieceTeam.isWhite())
+                    || (BoardUtil.EIGHTH_COLUMN[this.piecePosition] && this.pieceTeam.isBlack()))) {
+                    
+                  if(board.getSquare(possibleDestinationPosition).isSquareOccupied()) {
+                    final Piece pieceOnDestination = board.getSquare(possibleDestinationPosition).getPiece();
+                    if(this.pieceTeam != pieceOnDestination.getPieceTeam()) {
+                        legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
+                    }
+                }
+            }
         }
 
         return Collections.unmodifiableList(legalMoves);
