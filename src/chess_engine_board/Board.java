@@ -2,11 +2,9 @@ package chess_engine_board;
 
 import chess_engine_main.Team;
 import chess_engine_pieces_Bishop;
-import chess_engine_pieces_Knight;
-import chess_engine_pieces_Rook;
-import chess_engine_pieces_Piece;
 //import ImmutableList;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -16,13 +14,33 @@ import java.util.Map;
 public class Board {
 
     private final List<Square> gameBoard;
+    private final Collection<Piece> whitePieces;
+    private final Collection<Piece> balckPieces;
 
     private Board(Builder builder) {
         this.gameBoard = createGameBoard(builder);
+        this.whitePieces = calculateActivePieces(this.gameBoard, Team.WHITE);
+        this.balckPieces = calculateActivePieces(this.gameBoard, Team.BLACK);
     }
 
-    public Square getSquare(final int titleCoordinate) {
-        return null;
+    private Collection<Piece> calculateActivePieces(final List<Title> gameBoard, final Team team) {
+
+        final List<Piece> activePieces = new ArrayList<>();
+        for(final Square square : gameBoard) {
+            if(square.isSquareOccupied()) {
+                final Piece piece = square.getPiece();
+                if(piece.getPieceTeam() == team) {
+                    activePieces.add(piece);
+                }
+            }
+        }
+
+        return activePieces;
+
+    }
+
+    public Square getSquare(final int squareCoordinate) {
+        return gameBoard.get(squareCoordinate);
     }
 
     private static List<Square> createGameBoard(final Builder builder) {
