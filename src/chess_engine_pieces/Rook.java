@@ -6,20 +6,21 @@ import java.util.Collections;
 import java.util.List;
 
 import chess_engine_board.Board;
+import chess_engine_board.Board.BoardUtil;
 import chess_engine_board.Move;
 import chess_engine_board.Move.AttackMove;
 import chess_engine_board.Move.MajorPieceMove;
 import chess_engine_board.Square;
-import chess_engine_board.Board.BoardUtil;
 import chess_engine_main.Team;
 
-public class Bishop extends Piece {
+public class Rook extends Piece {
 
-    private final static int[] possibleVectorPositions = {-9, -7, 7, 9};
+    private final static int[] possibleVectorPositions = {-8, -1, 1, 8};
 
-    public Bishop(final int piecePosition, final Team pieceTeam) {
+    public Rook(final int piecePosition, final Team pieceTeam) {
         super(piecePosition, pieceTeam);
     }
+
 
     @Override
     public Collection<Move> getPossibleMoves(final Board board) {
@@ -64,14 +65,12 @@ public class Bishop extends Piece {
 
 
     //Edge cases
-    private static boolean firstColumnExclusion (final int currnetPos, final int bishopOffset) {
-        return BoardUtil.FIRST_COLUMN[currnetPos] && (bishopOffset == -9 || bishopOffset == 7);
+    private static boolean firstColumnExclusion (final int currnetPos, final int rookOffset) {
+        return BoardUtil.FIRST_COLUMN[currnetPos] && (rookOffset == -1);
     }
 
-    private static boolean eighthColumnExclusion (final int currnetPos, final int bishopOffset) {
-        return BoardUtil.EIGHTH_COLUMN[currnetPos] && (bishopOffset == -7 || bishopOffset == 9);
+    private static boolean eighthColumnExclusion (final int currnetPos, final int rookOffset) {
+        return BoardUtil.EIGHTH_COLUMN[currnetPos] && (rookOffset == 1);
     }
-    
-    
     
 }
