@@ -13,10 +13,14 @@ public abstract class Piece {
     protected final Team pieceTeam;
     protected final boolean isFirstMove;
 
-    public Piece(final int piecePosition, final Team pieceTeam) {
+    public Piece(final Team pieceTeam, final int piecePosition) {
         this.piecePosition = piecePosition;
         this.pieceTeam = pieceTeam;
         this.isFirstMove = false;
+    }
+
+    public int getPiecePosition() {
+        return this.piecePosition;
     }
 
     //Given the board passed in, this abstract method will calculate the legal moves for the corresponding piece

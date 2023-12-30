@@ -18,7 +18,7 @@ public class Bishop extends Piece {
 
     private final static int[] possibleVectorPositions = {-9, -7, 7, 9};
 
-    public Bishop(final int piecePosition, final Team pieceTeam) {
+    public Bishop(final Team pieceTeam, final int piecePosition) {
         super(piecePosition, pieceTeam);
     }
 

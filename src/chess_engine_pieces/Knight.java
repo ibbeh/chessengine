@@ -19,7 +19,7 @@ public class Knight extends Piece {
     //Relative to the knight's position, these are the possible positions where the knight can move (i.e. 17 squares to the right or 15 squares to the right etc...)
     private final static int[] possibleMovePositions = {-17, -15, -10, -6, 6, 10, 15, 17};
 
-    public Knight(final int piecePosition, final Team pieceTeam) {
+    public Knight(final Team pieceTeam, final int piecePosition) {
         super(piecePosition, pieceTeam);
     }
 
