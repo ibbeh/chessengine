@@ -11,13 +11,14 @@ import chess_engine_board.Move;
 import chess_engine_board.Move.AttackMove;
 import chess_engine_board.Move.MajorPieceMove;
 import chess_engine_board.Square;
+import chess_engine_main.Team;
 
 
 public class Queen extends Piece {
 
     private final static int[] possibleVectorPositions = {-9, -8, -7, -1, 1, 7, 8, 9};
 
-    public Queen(final int piecePosition, final int pieceTeam) {
+    public Queen(final int piecePosition, final Team pieceTeam) {
         super(piecePosition, pieceTeam);
     }
 
@@ -47,7 +48,7 @@ public class Queen extends Piece {
                     }
                     else{
                         final Piece pieceAtDestination = possibleDestinationSquare.getPiece();
-                        final int pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
+                        final Team pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
 
                         if(this.pieceTeam != pieceAtDestinationTeam) {
                             legalMoves.add(new AttackMove(board, this, possibleDestinationPosition, pieceAtDestination));

@@ -11,6 +11,7 @@ import chess_engine_board.Square;
 import chess_engine_board.Board.BoardUtil;
 import chess_engine_board.Move.AttackMove;
 import chess_engine_board.Move.MajorPieceMove;
+import chess_engine_main.Team;
 
 
 public class Knight extends Piece {
@@ -18,7 +19,7 @@ public class Knight extends Piece {
     //Relative to the knight's position, these are the possible positions where the knight can move (i.e. 17 squares to the right or 15 squares to the right etc...)
     private final static int[] possibleMovePositions = {-17, -15, -10, -6, 6, 10, 15, 17};
 
-    public Knight(final int piecePosition, final int pieceTeam) {
+    public Knight(final int piecePosition, final Team pieceTeam) {
         super(piecePosition, pieceTeam);
     }
 
@@ -44,7 +45,7 @@ public class Knight extends Piece {
                 }
                 else{
                     final Piece pieceAtDestination = possibleDestinationSquare.getPiece();
-                    final int pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
+                    final Team pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
 
                     if(this.pieceTeam != pieceAtDestinationTeam) {
                         legalMoves.add(new AttackMove(board, this, possibleDestinationPosition, pieceAtDestination));

@@ -16,19 +16,19 @@ public class Pawn extends Piece {
 
     private final static int[] possibleMovePositions = {8};
 
-    public Pawn(final int piecePosition, final int pieceTeam) {
+    public Pawn(final int piecePosition, final Team pieceTeam) {
         super(piecePosition, pieceTeam);
     }
 
     @Override
-    public Collection<Move> getPossibleMoves(Board board) {
+    public Collection<Move> getPossibleMoves(final Board board) {
      
         final List<Move> legalMoves = new ArrayList<Move>();
 
         for(final int currentPositionOffset : possibleMovePositions) {
 
             //Direction changes for white pawns and black pawns
-            int possibleDestinationPosition = this.piecePosition + Team.getDirection(this.getPieceTeam()) * currentPositionOffset;
+            final int possibleDestinationPosition = this.piecePosition + (this.getPieceTeam().getDirection() * currentPositionOffset);
 
             if(!BoardUtil.isValidSquarePosition(possibleDestinationPosition)) {
                 continue;
@@ -36,8 +36,20 @@ public class Pawn extends Piece {
 
             //If the pawn is moving 1 square forward and the square that it is moving to is not occupied
             if(currentPositionOffset == 8 && !board.getSquare(possibleDestinationPosition).isSquareOccupied()) {
+                //Need to deal with promotions here still
                 legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
             }
+            //Pawn jump
+            else if(currentPositionOffset == 16 && this.isFirstMove() && ((BoardUtil.SECOND_ROW[this.piecePosition] && this.getPieceTeam().isBlack()) ||
+                    BoardUtil.SEVENTH_ROW[this.piecePosition] && this.getPieceTeam().isWhite())) {
+                
+                final int positionBehindDestination = this.piecePosition + (this.pieceTeam.getDirection() * 8);
+                if(!board.getSquare(positionBehindDestination).isSquareOccupied() && 
+                    !board.getSquare(possibleDestinationPosition).isSquareOccupied()) {
+                    legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
+                }
+            }
+            //else if(currentPositionOffset == )
         }
 
         return Collections.unmodifiableList(legalMoves);

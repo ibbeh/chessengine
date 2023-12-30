@@ -1,19 +1,40 @@
 package chess_engine_main;
 
-public class Team {
-    public static final int WHITE = 0;
-    public static final int BLACK = 1;
-
-    //Private constructor to prevent instantiation
-    private Team() {}
-
-    public static int getDirection(int team) {
-        if(team == WHITE) {
+public enum Team {
+    WHITE {
+        @Override
+        public int getDirection() {
             return -1;
         }
-        else {
+
+        @Override
+        public boolean isWhite() {
+            return true;
+        }
+
+        @Override
+        public boolean isBlack() {
+            return false;
+        }
+    },
+    BLACK {
+        @Override
+        public int getDirection() {
             return 1;
         }
-    }
-}
 
+        @Override
+        public boolean isWhite() {
+            return false;
+        }
+
+        @Override
+        public boolean isBlack() {
+            return true;
+        }
+    };
+
+    public abstract int getDirection();
+    public abstract boolean isWhite();
+    public abstract boolean isBlack();
+}
