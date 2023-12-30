@@ -10,13 +10,13 @@ public abstract class Square {
 
     protected final int squarePosition;
 
-    private static final Map<Integer, EmptySquare> emptySquares = createAllPossibleEmptyTiles();
+    private static final Map<Integer, EmptySquare> emptySquares = createAllPossibleEmptySquares();
 
     private Square(int squarePos) {
         squarePosition = squarePos;
     }
     
-    private static Map<Integer, EmptySquare> createAllPossibleEmptyTiles() {
+    private static Map<Integer, EmptySquare> createAllPossibleEmptySquares() {
 
         final Map<Integer, EmptySquare> emptySquareMap = new HashMap<Integer, EmptySquare>();
 

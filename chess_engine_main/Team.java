@@ -1,5 +1,6 @@
 package chess_engine_main;
 
-public class Team {
-    
+public enum Team {
+    WHITE,
+    BLACK
 }
