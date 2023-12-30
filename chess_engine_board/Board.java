@@ -1,7 +1,6 @@
-package src;
+package chess_engine_board;
 
 public class Board {
-
     Square[][] squares;
 
     //Constructor(s)
@@ -13,5 +12,4 @@ public class Board {
 
     }
 
-
-}l
+}
