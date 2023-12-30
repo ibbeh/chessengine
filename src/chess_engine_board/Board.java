@@ -18,7 +18,7 @@ public class Board {
 
 
 
-    public abstract static class BoardUtil {
+    public static class BoardUtil {
 
         public static final boolean[] FIRST_COLUMN = initColumn(0);
         public static final boolean[] SECOND_COLUMN = initColumn(1);
@@ -27,6 +27,9 @@ public class Board {
 
         public static final int NUM_SQUARES = 64;
         public static final int NUM_SQUARES_PER_ROW = 8;
+
+        //Private constructor to prevent instantiation
+        private BoardUtil() {}
 
         public static boolean isValidSquarePosition(final int position) {
             return position >= 0 && position < NUM_SQUARES;
