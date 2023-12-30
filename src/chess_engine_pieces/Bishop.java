@@ -11,13 +11,13 @@ import chess_engine_board.Move.AttackMove;
 import chess_engine_board.Move.MajorPieceMove;
 import chess_engine_board.Square;
 import chess_engine_board.Board.BoardUtil;
-import chess_engine_main.Team;
+
 
 public class Bishop extends Piece {
 
     private final static int[] possibleVectorPositions = {-9, -7, 7, 9};
 
-    public Bishop(final int piecePosition, final Team pieceTeam) {
+    public Bishop(final int piecePosition, final int pieceTeam) {
         super(piecePosition, pieceTeam);
     }
 
@@ -47,7 +47,7 @@ public class Bishop extends Piece {
                     }
                     else{
                         final Piece pieceAtDestination = possibleDestinationSquare.getPiece();
-                        final Team pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
+                        final int pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
 
                         if(this.pieceTeam != pieceAtDestinationTeam) {
                             legalMoves.add(new AttackMove(board, this, possibleDestinationPosition, pieceAtDestination));

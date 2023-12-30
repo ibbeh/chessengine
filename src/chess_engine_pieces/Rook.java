@@ -11,13 +11,12 @@ import chess_engine_board.Move;
 import chess_engine_board.Move.AttackMove;
 import chess_engine_board.Move.MajorPieceMove;
 import chess_engine_board.Square;
-import chess_engine_main.Team;
 
 public class Rook extends Piece {
 
     private final static int[] possibleVectorPositions = {-8, -1, 1, 8};
 
-    public Rook(final int piecePosition, final Team pieceTeam) {
+    public Rook(final int piecePosition, final int pieceTeam) {
         super(piecePosition, pieceTeam);
     }
 
@@ -48,7 +47,7 @@ public class Rook extends Piece {
                     }
                     else{
                         final Piece pieceAtDestination = possibleDestinationSquare.getPiece();
-                        final Team pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
+                        final int pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
 
                         if(this.pieceTeam != pieceAtDestinationTeam) {
                             legalMoves.add(new AttackMove(board, this, possibleDestinationPosition, pieceAtDestination));

@@ -6,5 +6,14 @@ public class Team {
 
     //Private constructor to prevent instantiation
     private Team() {}
+
+    public static int getDirection(int team) {
+        if(team == WHITE) {
+            return -1;
+        }
+        else {
+            return 1;
+        }
+    }
 }
 

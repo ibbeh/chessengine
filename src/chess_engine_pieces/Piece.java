@@ -1,6 +1,5 @@
 package chess_engine_pieces;
 
-import chess_engine_main.Team;
 import chess_engine_board.Move;
 import chess_engine_board.Board;
 import java.util.Collection;
@@ -9,9 +8,9 @@ import java.util.Collection;
 public abstract class Piece {
     
     protected final int piecePosition;
-    protected final Team pieceTeam;
+    protected final int pieceTeam;
 
-    public Piece(final int piecePosition, final Team pieceTeam) {
+    public Piece(final int piecePosition, final int pieceTeam) {
         this.piecePosition = piecePosition;
         this.pieceTeam = pieceTeam;
     }
@@ -19,7 +18,7 @@ public abstract class Piece {
     //Given the board passed in, this abstract method will calculate the legal moves for the corresponding piece
     public abstract Collection<Move> getPossibleMoves(final Board board);
 
-    public Team getPieceTeam() {
+    public int getPieceTeam() {
         return this.pieceTeam;
     }
 
