@@ -9,6 +9,8 @@ import chess_engine_board.Board;
 import chess_engine_board.Move;
 import chess_engine_board.Square;
 import chess_engine_board.Board.BoardUtil;
+import chess_engine_board.Move.AttackMove;
+import chess_engine_board.Move.MajorPieceMove;
 import chess_engine_main.Team;
 
 public class Knight extends Piece {
@@ -21,31 +23,31 @@ public class Knight extends Piece {
     }
 
     @Override
-    public Collection<Move> getPossibleMoves(Board board) {
+    public Collection<Move> getPossibleMoves(final Board board) {
 
         final List<Move> legalMoves = new ArrayList<Move>();
 
         for(int currentPositionOffset: possibleMovePositions) {
-            int possibleDesinationPosition = this.piecePosition + currentPositionOffset;
+            int possibleDestinationPosition = this.piecePosition + currentPositionOffset;
 
-            if(BoardUtil.isValidSquarePosition(possibleDesinationPosition)) {
+            if(BoardUtil.isValidSquarePosition(possibleDestinationPosition)) {
 
                 if(firstColumnExclusion(this.piecePosition, currentPositionOffset) || secondColumnExclusion(this.piecePosition, currentPositionOffset) ||
                     seventhColumnExclusion(this.piecePosition, currentPositionOffset) || eighthColumnExclusion(this.piecePosition, currentPositionOffset)) {
                     continue;
                 }
 
-                final Square possibleDestinationSquare = board.getSquare(possibleDesinationPosition);
+                final Square possibleDestinationSquare = board.getSquare(possibleDestinationPosition);
 
                 if(!possibleDestinationSquare.isSquareOccupied()) {
-                    legalMoves.add(new Move());
+                    legalMoves.add(new MajorPieceMove(board, this, possibleDestinationPosition));
                 }
                 else{
                     final Piece pieceAtDestination = possibleDestinationSquare.getPiece();
                     final Team pieceAtDestinationTeam = pieceAtDestination.getPieceTeam();
 
                     if(this.pieceTeam != pieceAtDestinationTeam) {
-                        legalMoves.add(new Move());
+                        legalMoves.add(new AttackMove(board, this, possibleDestinationPosition, pieceAtDestination));
                     }
                 }
             }

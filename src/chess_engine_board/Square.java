@@ -4,6 +4,9 @@ import chess_engine_pieces.Piece;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import chess_engine_board.Board.BoardUtil;
+
 import java.util.Collections;
 
 public abstract class Square {
@@ -12,7 +15,7 @@ public abstract class Square {
 
     private static final Map<Integer, EmptySquare> emptySquares = createAllPossibleEmptySquares();
 
-    private Square(int squarePos) {
+    private Square(final int squarePos) {
         squarePosition = squarePos;
     }
     
@@ -20,7 +23,7 @@ public abstract class Square {
 
         final Map<Integer, EmptySquare> emptySquareMap = new HashMap<Integer, EmptySquare>();
 
-        for(int i = 0; i < 64; i++) {
+        for(int i = 0; i < BoardUtil.NUM_SQUARES; i++) {
             emptySquareMap.put(i, new EmptySquare(i));
         }
         
@@ -63,7 +66,7 @@ public abstract class Square {
 
             private final Piece pieceOnSquare;
 
-            private OccupiedSquare(final int position, Piece piece) {
+            private OccupiedSquare(final int position, final Piece piece) {
                 super(position);
                 pieceOnSquare = piece;
             }
