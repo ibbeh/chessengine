@@ -51,6 +51,11 @@ public abstract class Square {
             }
 
             @Override
+            public String toString() {
+                return "-";
+            }
+
+            @Override
             public boolean isSquareOccupied() {
                 return false;
             }
@@ -71,6 +76,10 @@ public abstract class Square {
                 pieceOnSquare = piece;
             }
 
+            @Override
+            public String toString() {
+                return getPiece().getPieceTeam().isBlack() ? getPiece().toString().toLowerCase() : getPiece().toString();
+            }
 
             @Override
             public boolean isSquareOccupied() {

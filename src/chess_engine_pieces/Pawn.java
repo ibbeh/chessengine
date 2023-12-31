@@ -17,7 +17,7 @@ public class Pawn extends Piece {
     private final static int[] possibleMovePositions = {7, 8, 9, 16};
 
     public Pawn(final Team pieceTeam, final int piecePosition) {
-        super(piecePosition, pieceTeam);
+        super( pieceTeam, piecePosition);
     }
 
     @Override
@@ -72,6 +72,11 @@ public class Pawn extends Piece {
         }
 
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString() {
+        return PieceType.PAWN.toString();
     }
     
 }

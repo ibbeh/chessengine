@@ -19,7 +19,7 @@ public class Queen extends Piece {
     private final static int[] possibleVectorPositions = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public Queen(final Team pieceTeam, final int piecePosition) {
-        super(piecePosition, pieceTeam);
+        super(pieceTeam, piecePosition);
     }
 
     @Override
@@ -63,6 +63,11 @@ public class Queen extends Piece {
         return Collections.unmodifiableList(legalMoves);
     }
 
+    @Override
+    public String toString() {
+        return PieceType.QUEEN.toString();
+    }
+    
     //Edge cases
     private static boolean firstColumnExclusion (final int currnetPos, final int queenOffset) {
         return BoardUtil.FIRST_COLUMN[currnetPos] && (queenOffset == -1 || queenOffset == -9 || queenOffset == 7);

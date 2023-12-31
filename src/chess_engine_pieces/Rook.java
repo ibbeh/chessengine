@@ -18,7 +18,7 @@ public class Rook extends Piece {
     private final static int[] possibleVectorPositions = {-8, -1, 1, 8};
 
     public Rook(final Team pieceTeam, final int piecePosition) {
-        super(piecePosition, pieceTeam);
+        super(pieceTeam, piecePosition);
     }
 
 
@@ -62,7 +62,11 @@ public class Rook extends Piece {
 
         return Collections.unmodifiableList(legalMoves);
     }
-
+    
+    @Override
+    public String toString() {
+        return PieceType.ROOK.toString();
+    }
 
     //Edge cases
     private static boolean firstColumnExclusion (final int currnetPos, final int rookOffset) {

@@ -18,7 +18,7 @@ public class King extends Piece {
     private final static int[] possibleMovePositions = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public King(final Team pieceTeam, final int piecePosition) {
-        super(piecePosition, pieceTeam);
+        super(pieceTeam, piecePosition);
     }
 
     @Override
@@ -55,15 +55,19 @@ public class King extends Piece {
         return Collections.unmodifiableList(legalMoves);
     }
 
+    @Override
+    public String toString() {
+        return PieceType.KING.toString();
+    }
 
-        //Edge cases for possible moves
-        private static boolean firstColumnExclusion(final int currentPos, final int kingOffset) {
-            return BoardUtil.FIRST_COLUMN[currentPos] && (kingOffset == -9 || kingOffset == -1 || kingOffset == 7);
-        }
-    
-        private static boolean eighthColumnExclusion(final int currentPos, final int kingOffset) {
-            return BoardUtil.EIGHTH_COLUMN[currentPos] && (kingOffset == -7 || kingOffset == 1 || kingOffset == 9);
-        }
+    //Edge cases for possible moves
+    private static boolean firstColumnExclusion(final int currentPos, final int kingOffset) {
+        return BoardUtil.FIRST_COLUMN[currentPos] && (kingOffset == -9 || kingOffset == -1 || kingOffset == 7);
+    }
+
+    private static boolean eighthColumnExclusion(final int currentPos, final int kingOffset) {
+        return BoardUtil.EIGHTH_COLUMN[currentPos] && (kingOffset == -7 || kingOffset == 1 || kingOffset == 9);
+    }
 
     
     

@@ -19,7 +19,7 @@ public class Bishop extends Piece {
     private final static int[] possibleVectorPositions = {-9, -7, 7, 9};
 
     public Bishop(final Team pieceTeam, final int piecePosition) {
-        super(piecePosition, pieceTeam);
+        super(pieceTeam, piecePosition);
     }
 
     @Override
@@ -61,6 +61,11 @@ public class Bishop extends Piece {
         }
 
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString() {
+        return PieceType.BISHOP.toString();
     }
 
 
