@@ -16,5 +16,17 @@ public class WhitePlayer extends Player {
     public Collection<Piece> getActivePieces() {
         return this.board.getWhitePieces();
     }
+
+    @Override
+    public Team getTeam() {
+        return Team.WHITE;
+    }
+
+    @Override
+    public Player getOpponent() {
+        return this.board.getBlackPlayer();
+    }
+
+    
     
 }

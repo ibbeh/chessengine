@@ -14,6 +14,10 @@ public abstract class Move {
         endPosition = endPos;
     }
 
+    public int getEndPosition() {
+        return this.endPosition;
+    }
+
     public static final class MajorPieceMove extends Move {
 
         public MajorPieceMove(final Board board, final Piece movedPiece, final int endPosition) {

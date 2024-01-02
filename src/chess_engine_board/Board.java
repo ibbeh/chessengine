@@ -1,6 +1,7 @@
 package chess_engine_board;
 
 import chess_engine_main.BlackPlayer;
+import chess_engine_main.Player;
 import chess_engine_main.Team;
 import chess_engine_main.WhitePlayer;
 import chess_engine_pieces.Piece;
@@ -10,7 +11,6 @@ import chess_engine_pieces.Bishop;
 import chess_engine_pieces.Queen;   
 import chess_engine_pieces.King;   
 import chess_engine_pieces.Pawn;  
-import chess_engine_main.Team; 
 import java.util.Collections;
 import java.util.Collection;
 import java.util.ArrayList;
@@ -54,6 +54,14 @@ public class Board {
             }
         }
         return builder.toString();
+    }
+    
+    public Player getWhitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public Player getBlackPlayer() {
+        return this.blackPlayer;
     }
 
     public Collection<Piece> getBlackPieces() {
