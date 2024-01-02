@@ -1,5 +1,6 @@
 package chess_engine_board;
 
+import chess_engine_board.Board.Builder;
 import chess_engine_pieces.Piece;
 
 public abstract class Move {
@@ -28,7 +29,24 @@ public abstract class Move {
         
          @Override
         public Board execute() {
-            return null;
+
+            final Builder newMoveBoardBuilder = new Builder();
+            //Traverse through all the player pieces that aren't moved and for the new transition board set the piece as it already is (since they are not changing)
+            for(final Piece piece : this.board.getCurrentPlayer().getActivePieces()) {
+                //Equals method not overridden for pieces classes yet
+                if(!this.movedPiece.equals(piece)) {
+                    newMoveBoardBuilder.setPiece(piece);
+                }
+            }
+            //Traverse through the opponent pieces and for the new transition board set the piece at it already is (since none of the opponents pieces are moving)
+            for(final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
+                newMoveBoardBuilder.setPiece(piece);
+            }
+
+            newMoveBoardBuilder.setMoveMaker(null);
+            newMoveBoardBuilder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getTeam());
+
+            return newMoveBoardBuilder.build();
         }
         
     }

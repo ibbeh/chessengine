@@ -19,4 +19,12 @@ public class MoveTransition {
         return moveStatus;
     }
 
+    public Board getTransitionBoard() {
+        return transitionBoard;
+    }
+
+    public Move getMoveMade() {
+        return moveMade;
+    }
+
 }
