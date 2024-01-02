@@ -28,6 +28,7 @@ public class Board {
 
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
+    private final Player currentPlayer;
 
     private Board(Builder builder) {
         this.gameBoard = createGameBoard(builder);
@@ -39,6 +40,7 @@ public class Board {
 
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.currentPlayer = null;
 
     }
 
@@ -62,6 +64,10 @@ public class Board {
 
     public Player getBlackPlayer() {
         return this.blackPlayer;
+    }
+
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
     }
 
     public Collection<Piece> getBlackPieces() {

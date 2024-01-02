@@ -18,10 +18,17 @@ public abstract class Move {
         return this.endPosition;
     }
 
+    public abstract Board execute();
+
     public static final class MajorPieceMove extends Move {
 
         public MajorPieceMove(final Board board, final Piece movedPiece, final int endPosition) {
             super(board, movedPiece, endPosition);
+        }
+        
+         @Override
+        public Board execute() {
+            return null;
         }
         
     }
@@ -34,7 +41,14 @@ public abstract class Move {
             super(board, movedPiece, endPosition);
             this.attackedPiece = attackPiece;
         }
+
+        @Override
+        public Board execute() {
+            return null;
+        }
         
     }
+
+
 
 }

@@ -25,6 +25,14 @@ public abstract class Player {
         this.isInCheck = !Player.calculateAttacksOnSquare(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
 
+    public King getPlayerKing() {
+        return this.playerKing;
+    }
+
+    public Collection<Move> getLegalMoves() {
+        return this.legalMoves;
+    }
+
     private static Collection<Move> calculateAttacksOnSquare(int piecePosition, Collection<Move> opponentMoves) {
         final List<Move> attackMoves = new ArrayList<>();
         for(final Move move : opponentMoves) {
@@ -76,7 +84,21 @@ public abstract class Player {
     }
 
     public MoveTransition makeMove(final Move move) {
-        return null;
+
+        if(!isMoveLegal(move)) {
+            return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+        }
+        
+        final Board transitionBoard = move.execute();
+
+        final Collection<Move> kingAttacks = Player.calculateAttacksOnSquare(transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition()
+        ,transitionBoard.getCurrentPlayer().getLegalMoves());
+        //Case where move would leave player in check (illegal move)
+        if(!kingAttacks.isEmpty()) {
+            return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+        }
+        
+        return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
     }
 
     public abstract Collection<Piece> getActivePieces();
