@@ -20,7 +20,7 @@ public class Knight extends Piece {
     private final static int[] possibleMovePositions = {-17, -15, -10, -6, 6, 10, 15, 17};
 
     public Knight(final Team pieceTeam, final int piecePosition) {
-        super( pieceTeam, piecePosition);
+        super(PieceType.KNIGHT, pieceTeam, piecePosition);
     }
 
     @Override

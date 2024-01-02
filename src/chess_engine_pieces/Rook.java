@@ -18,7 +18,7 @@ public class Rook extends Piece {
     private final static int[] possibleVectorPositions = {-8, -1, 1, 8};
 
     public Rook(final Team pieceTeam, final int piecePosition) {
-        super(pieceTeam, piecePosition);
+        super(PieceType.ROOK, pieceTeam, piecePosition);
     }
 
 

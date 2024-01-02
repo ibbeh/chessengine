@@ -18,7 +18,7 @@ public class King extends Piece {
     private final static int[] possibleMovePositions = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public King(final Team pieceTeam, final int piecePosition) {
-        super(pieceTeam, piecePosition);
+        super(PieceType.KING, pieceTeam, piecePosition);
     }
 
     @Override

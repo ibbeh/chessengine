@@ -19,7 +19,7 @@ public class Bishop extends Piece {
     private final static int[] possibleVectorPositions = {-9, -7, 7, 9};
 
     public Bishop(final Team pieceTeam, final int piecePosition) {
-        super(pieceTeam, piecePosition);
+        super(PieceType.BISHOP, pieceTeam, piecePosition);
     }
 
     @Override
