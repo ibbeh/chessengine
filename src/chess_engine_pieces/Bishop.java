@@ -81,3 +81,4 @@ public class Bishop extends Piece {
     
     
 }
+//ADILET ISHENBEKOV
