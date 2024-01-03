@@ -79,4 +79,5 @@ public class Bishop extends Piece {
     }
 
 }
+//ADILET ISHENBEKOV
 //IBRAHEEM REFAI 
