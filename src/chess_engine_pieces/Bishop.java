@@ -77,8 +77,6 @@ public class Bishop extends Piece {
     private static boolean eighthColumnExclusion (final int currnetPos, final int bishopOffset) {
         return BoardUtil.EIGHTH_COLUMN[currnetPos] && (bishopOffset == -7 || bishopOffset == 9);
     }
-    
-    
-    
+
 }
 //IBRAHEEM REFAI 
