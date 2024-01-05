@@ -19,7 +19,6 @@ import java.util.Map;
 import java.util.HashMap; 
 import java.util.Arrays;
 
-
 public class Board {
 
     private final List<Square> gameBoard;
@@ -156,10 +155,17 @@ public class Board {
         return builder.build();
     }
 
+
+    //NEED TO ADD GUAVA LIBRARY FOR ITERABLES
+    public Iterable<Move> getAllLegalMoves() {
+        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves() , this.blackPlayer.getLegalMoves()));
+    }
+
     public static class Builder {
 
         Map<Integer, Piece> boardConfig;
         Team nextMoveMaker; 
+        Pawn enPassantPawn;
 
         public Builder() {
             this.boardConfig = new HashMap<>();
@@ -177,6 +183,10 @@ public class Board {
 
         public Board build() {
             return new Board(this);
+        }
+
+        public void setEnPassantPawn(Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
         }
 
     }

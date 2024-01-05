@@ -64,10 +64,14 @@ public class Bishop extends Piece {
     }
 
     @Override
+    public Bishop movePiece(Move move) {
+        return new Bishop(move.getMovedPiece().getPieceTeam() , move.getEndPosition());
+    }
+
+    @Override
     public String toString() {
         return PieceType.BISHOP.toString();
     }
-
 
     //Edge cases
     private static boolean firstColumnExclusion (final int currnetPos, final int bishopOffset) {
@@ -77,7 +81,7 @@ public class Bishop extends Piece {
     private static boolean eighthColumnExclusion (final int currnetPos, final int bishopOffset) {
         return BoardUtil.EIGHTH_COLUMN[currnetPos] && (bishopOffset == -7 || bishopOffset == 9);
     }
-
+    
 }
 //ADILET ISHENBEKOV
 //IBRAHEEM REFAI 
