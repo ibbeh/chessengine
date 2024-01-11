@@ -158,7 +158,9 @@ public class Board {
 
     //NEED TO ADD GUAVA LIBRARY FOR ITERABLES
     public Iterable<Move> getAllLegalMoves() {
-        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves() , this.blackPlayer.getLegalMoves()));
+        //return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves() , this.blackPlayer.getLegalMoves()));
+
+        return null;
     }
 
     public static class Builder {
